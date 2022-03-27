@@ -428,5 +428,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startWaypoint: {fileID: 3762057521937944045}
-  _flyTime: 2
+  _flyTime: 1
   _timeToCollectHoney: 1
