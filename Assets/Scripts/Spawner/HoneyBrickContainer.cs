@@ -9,7 +9,6 @@ public class HoneyBrickContainer : MonoBehaviour
 
     private int _currentBricksAmount;
 
-
     public IReadOnlyList<HoneyBrickPlace> Places => _honeyBrickPlaces;
 
     private int _maxBricksAmount => _honeyBrickPlaces.Count;

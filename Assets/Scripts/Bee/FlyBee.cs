@@ -13,7 +13,7 @@ public class FlyBee : MonoBehaviour // rename
 
     private void Start()
     {
-        _finishWaypoint = FindObjectOfType<FinishWaypoint>();
+        _finishWaypoint = FindObjectOfType<FinishWaypoint>(); 
 
         _spawner = FindObjectOfType<Spawner>();
 
@@ -28,7 +28,6 @@ public class FlyBee : MonoBehaviour // rename
 
         sequence.Append(transform.DOLookAt(_finishWaypoint.transform.position, 0));
         sequence.Append(transform.DOMove(_finishWaypoint.transform.position, _flyTime).SetEase(Ease.Flash).SetDelay(_timeToCollectHoney));
-
         sequence.Append(transform.DOLookAt(_startWaypoint.position, 0));
         sequence.Append(transform.DOMove(_startWaypoint.position, _flyTime).SetEase(Ease.Flash));
 
@@ -41,7 +40,7 @@ public class FlyBee : MonoBehaviour // rename
         {
             Debug.Log("ѕчела прилетела");
 
-            _spawner.InstantiateHoneyBrick();
+          //  _spawner.InstantiateHoneyBrick();
         }
     }
 }
