@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using DG.Tweening;
 
 public class Spawner : MonoBehaviour
 {
@@ -9,32 +8,29 @@ public class Spawner : MonoBehaviour
     [SerializeField] private HoneyBrickContainer _honeyBrickContainer;
     [SerializeField] private Transform _spawnPoints; // one point
     [SerializeField] private HoneyBrick _honeyBrickTemplate;
+    [SerializeField] private GameObject _hiveCover;
 
-    private float elapsedTime = 0;
-
-    private void Update()
+    public void InstantiateHoneyBrick()
     {
-        elapsedTime += Time.deltaTime;
+        OpenHiveCover();
+        Debug.Log("Спаунер получил сообщение");
 
-        if (elapsedTime >= _spawnDelay)
+        HoneyBrickPlace brickPlace = _honeyBrickContainer.Places.FirstOrDefault(place => place.IsAvailible);
+        if (brickPlace != default)
         {
-           // for (int i = 0; i < _spawnPoints.Length; i++)
-            {
-                HoneyBrickPlace brickPlace = _honeyBrickContainer.Places.FirstOrDefault(place => place.IsAvailible);
+            var brick = Instantiate(_honeyBrickTemplate, _spawnPoints.position, _honeyBrickTemplate.transform.rotation);
+            brick.GetComponent<HoneyBrickMovable>().InitFlyRoute(brickPlace.transform.position, brickPlace.transform.rotation);
 
-                if (brickPlace != default)
-                {
-                    var brick = Instantiate(_honeyBrickTemplate, _spawnPoints.position, _honeyBrickTemplate.transform.rotation);
-                    brick.GetComponent<Flyable>().InitFlyRoute(brickPlace.transform.position, brickPlace.transform.rotation);
+            brickPlace.Reserve(brick);
 
-                    brickPlace.Reserve(brick);
-
-                    _honeyBrickContainer.AddBrick();
-                }
-            }
-
-            elapsedTime = 0;
+            _honeyBrickContainer.AddBrick();
         }
     }
 
+    public void OpenHiveCover()
+    {
+        Sequence sequence = DOTween.Sequence();
+
+        sequence.Append(_hiveCover.transform.DOLocalMoveX(0.5f, 1));
+    }
 }
