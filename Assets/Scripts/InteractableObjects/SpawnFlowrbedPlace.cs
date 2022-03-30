@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnFlowrbedPlace : MonoBehaviour
@@ -9,10 +7,6 @@ public class SpawnFlowrbedPlace : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("I have money");
-
          var flowerbed = Instantiate(_flowerbedTemplate, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
-        //var flowerbed = Instantiate(_flowerbedTemplate);//, _spawnPoint);
-
     }
 }
