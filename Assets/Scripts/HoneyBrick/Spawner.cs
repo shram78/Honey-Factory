@@ -5,7 +5,7 @@ using DG.Tweening;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private ContainerHoneyBrick _honeyBrickContainer;
-    [SerializeField] private Transform _spawnPoint; 
+    [SerializeField] private Transform _spawnPoint;
     [SerializeField] private HoneyBrick _honeyBrickTemplate;
     [SerializeField] private GameObject _hiveCover;
 
@@ -32,10 +32,9 @@ public class Spawner : MonoBehaviour
         PlaceHoneyBrick brickPlace = _honeyBrickContainer.Places.FirstOrDefault(place => place.IsAvailible);
         if (brickPlace != default)
         {
-            var brick = Instantiate(_honeyBrickTemplate, _spawnPoint.position, _honeyBrickTemplate.transform.rotation);
-            //brick.GetComponent<MovableHoneyBrick>().MoveToPlayer(brickPlace.transform.position);//, brickPlace.transform.rotation);
+            HoneyBrick brick = Instantiate(_honeyBrickTemplate, _spawnPoint.position, _honeyBrickTemplate.transform.rotation);
 
-            brick.GetComponent<CollectableHoneyBrick>().Collect(brickPlace.transform.position);//, brickPlace.transform.rotation);
+            brick.GetComponent<CollectableHoneyBrick>().Collect(brickPlace.transform.position);
 
 
             brickPlace.Reserve(brick);
@@ -46,10 +45,7 @@ public class Spawner : MonoBehaviour
 
     private void OpenHiveCover()
     {
-        Debug.Log("Крышка открылась");
-
         Sequence sequence = DOTween.Sequence();
-
         sequence.Append(_hiveCover.transform.DOMoveX(0.6f, 0.2f)).SetRelative();
         sequence.Append(_hiveCover.transform.DOMoveX(-0.1f, 0.1f)).SetRelative();
         sequence.Append(_hiveCover.transform.DOMoveX(0.1f, 0.1f)).SetRelative();

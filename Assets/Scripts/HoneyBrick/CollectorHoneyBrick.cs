@@ -28,4 +28,23 @@ public class CollectorHoneyBrick : MonoBehaviour
             _brickCollector.enabled = false;
         }
     }
+
+    public HoneyBrick GiveBrick(Vector3 targetPosition, Quaternion targetRotation)
+    {
+        HoneyBrick honeyBrick = null;
+
+        if (_brickCount > 0)
+        {
+            _brickCount--;
+
+            honeyBrick = transform.GetChild(_brickCount).GetComponent<HoneyBrick>();
+
+            BrickGiven?.Invoke();
+
+            if (_brickCollector.enabled == false && _isFull == false)
+                _brickCollector.enabled = true;
+        }
+
+        return honeyBrick;
+    }
 }

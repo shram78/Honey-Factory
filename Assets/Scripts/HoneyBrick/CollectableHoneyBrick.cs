@@ -44,4 +44,12 @@ public class CollectableHoneyBrick : MonoBehaviour
         sequence.Insert(0.5f, transform.DORotate(rotationValueInPlace, 0.3f).SetRelative());
     }
 
+    public void PutBrick(Vector3 targetPosition, Quaternion targetRotation)
+    {
+        transform.DOMove(targetPosition, 0);
+
+      //  Destroy(gameObject);
+
+        Debug.Log("Брик улетео");
+    }
 }

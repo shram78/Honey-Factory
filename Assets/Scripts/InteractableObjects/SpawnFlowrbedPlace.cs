@@ -7,6 +7,6 @@ public class SpawnFlowrbedPlace : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-         var flowerbed = Instantiate(_flowerbedTemplate, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
+        Flowerbed flowerbed = Instantiate(_flowerbedTemplate, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
     }
 }

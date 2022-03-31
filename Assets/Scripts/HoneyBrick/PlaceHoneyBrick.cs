@@ -19,14 +19,6 @@ public class PlaceHoneyBrick : MonoBehaviour
         IsAvailible = true;
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.TryGetComponent(out HoneyBrick brick) && _brick == brick)
-    //    {
-    //        PlaceTaken?.Invoke();
-    //    }
-    //}
-
     public void Reserve(HoneyBrick honeyBrick)
     {
         IsAvailible = _isInfinite;
@@ -38,6 +30,6 @@ public class PlaceHoneyBrick : MonoBehaviour
     //{
     //    IsAvailible = true;
     //    PlaceFree?.Invoke(this);
-       // _brick.GetComponent<Collectable>().Taken -= Free;
-   // }
+    //  //  _brick.GetComponent<Collectable>().Taken -= Free;
+    //}
 }
