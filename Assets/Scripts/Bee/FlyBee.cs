@@ -7,13 +7,13 @@ public class FlyBee : MonoBehaviour // rename
     [SerializeField] private float _flyTime;
     [SerializeField] private float _timeToCollectHoney;
 
-    private FinishWaypoint _finishWaypoint;
+    private FinishWaypointBeeFly _finishWaypoint;
 
     private Spawner _spawner;
 
     private void Start()
     {
-        _finishWaypoint = FindObjectOfType<FinishWaypoint>(); 
+        _finishWaypoint = FindObjectOfType<FinishWaypointBeeFly>(); 
 
         _spawner = FindObjectOfType<Spawner>();
 
@@ -36,7 +36,7 @@ public class FlyBee : MonoBehaviour // rename
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out FinishWaypoint hiveBeePointDelevery))
+        if (other.gameObject.TryGetComponent(out FinishWaypointBeeFly hiveBeePointDelevery))
         {
             Debug.Log("ѕчела прилетела");
 
