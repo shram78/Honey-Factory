@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Events;
+using DG.Tweening;
 
 
 public class DeliveryHoneyBrick : MonoBehaviour
@@ -11,6 +13,21 @@ public class DeliveryHoneyBrick : MonoBehaviour
     [SerializeField] private float _collectionDelay;
 
     private Coroutine CollectCoroutine;
+
+    public event UnityAction<HoneyBrick> Collected;//
+
+
+    //
+    private void OnEnable()
+    {
+        Collected += OnBrickCollected;
+    }
+
+    private void OnDisable()
+    {
+        Collected -= OnBrickCollected;
+    }
+    //
 
 
     private void OnTriggerEnter(Collider other)
@@ -32,7 +49,7 @@ public class DeliveryHoneyBrick : MonoBehaviour
 
     private IEnumerator CollectFrom(Player player)
     {
-        HoneyBrick honeyBrick = null;
+        HoneyBrick brick = null;
 
         while (Physics.CheckBox(_deliveryArea.center, _deliveryArea.size))
         {
@@ -40,19 +57,26 @@ public class DeliveryHoneyBrick : MonoBehaviour
 
             if (place != default)
             {
-                honeyBrick = player.CollectorHoneyBrick.GiveBrick(place.transform.position, place.transform.rotation);
-                Debug.Log("coruutine");
+                brick = player.Bag.GiveBrick(place.transform.position, place.transform.rotation);
 
-                if (honeyBrick != null)
+                if (brick != null)
                 {
-                    CollectableHoneyBrick collectableHoneyBrick = honeyBrick.GetComponent<CollectableHoneyBrick>();
-                    collectableHoneyBrick.PutBrick(place.transform.position, place.transform.rotation);
+                    MovableHoneyBrick fly = brick.GetComponent<MovableHoneyBrick>();
+                    fly.InitFlyRoute(place.transform.position, place.transform.rotation);
 
-                    place.Reserve(honeyBrick);
+                    place.Reserve(brick);
+
+                    Collected?.Invoke(brick);
                 }
             }
 
             yield return new WaitForSeconds(_collectionDelay);
         }
+    }
+
+
+    private void OnBrickCollected(HoneyBrick brick)
+    {
+        _container.AddBrick();
     }
 }

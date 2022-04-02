@@ -15,7 +15,7 @@ public class ContainerHoneyBrick : MonoBehaviour
 
     public event UnityAction<int, int> BrickAmountChanged;
     public event UnityAction BrickPlaced;
-    public event UnityAction BuildingComplete;
+   // public event UnityAction BuildingComplete;
 
     private void Start()
     {
@@ -28,38 +28,38 @@ public class ContainerHoneyBrick : MonoBehaviour
         {
             _honeyBrickPlaces.Add(transform.GetChild(i).GetComponent<PlaceHoneyBrick>());
 
-            _honeyBrickPlaces[i].PlaceFree += OnBrickTaken;
+            // _honeyBrickPlaces[i].PlaceFree += OnBrickTaken;
         }
 
-        _honeyBrickPlaces[transform.childCount - 1].PlaceTaken += OnLastPlaceTaken;
+        //   _honeyBrickPlaces[transform.childCount - 1].PlaceTaken += OnLastPlaceTaken;
     }
 
-    private void OnDisable()
-    {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            _honeyBrickPlaces[i].PlaceFree -= OnBrickTaken;
-        }
+    //private void OnDisable()
+    //{
+    //    for (int i = 0; i < transform.childCount; i++)
+    //    {
+    //        _honeyBrickPlaces[i].PlaceFree -= OnBrickTaken;
+    //    }
 
-        _honeyBrickPlaces[transform.childCount - 1].PlaceTaken -= OnLastPlaceTaken;
-    }
+    //   // _honeyBrickPlaces[transform.childCount - 1].PlaceTaken -= OnLastPlaceTaken;
+    //}
 
     public void AddBrick()
     {
         _currentBricksAmount++;
         BrickPlaced?.Invoke();
 
-        BrickAmountChanged?.Invoke(_currentBricksAmount, _maxBricksAmount);
+      //  BrickAmountChanged?.Invoke(_currentBricksAmount, _maxBricksAmount);
     }
 
-    private void OnBrickTaken(PlaceHoneyBrick position)
-    {
-        _currentBricksAmount--;
-        BrickAmountChanged?.Invoke(_currentBricksAmount, _maxBricksAmount);
-    }
+    //private void OnBrickTaken(PlaceHoneyBrick position)
+    //{
+    //    _currentBricksAmount--;
+    //    BrickAmountChanged?.Invoke(_currentBricksAmount, _maxBricksAmount);
+    //}
 
-    private void OnLastPlaceTaken()
-    {
-        BuildingComplete?.Invoke();
-    }
+    //private void OnLastPlaceTaken()
+    //{
+    //    BuildingComplete?.Invoke();
+    //}
 }

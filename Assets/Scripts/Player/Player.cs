@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private CollectorHoneyBrick _collectorHoneyBrick;
+    [SerializeField] private Bag _bag;
 
-    public CollectorHoneyBrick CollectorHoneyBrick => _collectorHoneyBrick;
+    public Bag Bag => _bag;
 }

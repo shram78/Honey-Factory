@@ -92,7 +92,8 @@ GameObject:
   - component: {fileID: 2070448184268734561}
   - component: {fileID: 1397201382672118234}
   - component: {fileID: -223530079580400246}
-  - component: {fileID: 359170409179767446}
+  - component: {fileID: 8204404228868467297}
+  - component: {fileID: 30301921269735340}
   m_Layer: 0
   m_Name: HoneyBrick
   m_TagString: Untagged
@@ -145,7 +146,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b7271bab43e9f479f56ec73de52c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &359170409179767446
+--- !u!114 &8204404228868467297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724989759488563931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fd6068c7529e74dad113fda4eec6f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+  _rotationSpeed: 3.5
+--- !u!114 &30301921269735340
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 653078474834ca94290d490035fe88de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deliveryArea: {fileID: 0}
 --- !u!1 &2992685122874419594
 GameObject:
   m_ObjectHideFlags: 0

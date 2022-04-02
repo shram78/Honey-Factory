@@ -7,12 +7,12 @@ public class PlaceHoneyBrick : MonoBehaviour
 {
     [SerializeField] private bool _isInfinite;
 
-    private HoneyBrick _brick;
+    private HoneyBrick _honeyBrick;
 
     public bool IsAvailible { get; private set; }
 
     public event UnityAction<PlaceHoneyBrick> PlaceFree;
-    public event UnityAction PlaceTaken;
+    //public event UnityAction PlaceTaken;
 
     private void Start()
     {
@@ -22,14 +22,14 @@ public class PlaceHoneyBrick : MonoBehaviour
     public void Reserve(HoneyBrick honeyBrick)
     {
         IsAvailible = _isInfinite;
-        _brick = honeyBrick;
-        //_brick.GetComponent<Collectable>().Taken += Free;
+        _honeyBrick = honeyBrick;
+        _honeyBrick.GetComponent<CollectableHoneyBrick>().Taken += Free;
     }
 
-    //public void Free()
-    //{
-    //    IsAvailible = true;
-    //    PlaceFree?.Invoke(this);
-    //  //  _brick.GetComponent<Collectable>().Taken -= Free;
-    //}
+    public void Free() // очищает в спаунере свободные слоты
+    {
+        IsAvailible = true;
+        PlaceFree?.Invoke(this);
+       _honeyBrick.GetComponent<CollectableHoneyBrick>().Taken -= Free;
+    }
 }

@@ -1,55 +1,35 @@
 using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
+using System.Collections;
 
 public class CollectableHoneyBrick : MonoBehaviour
 {
     public event UnityAction Taken;
 
+    private float _collectionDelay = 0.5f;
+
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out CollectorHoneyBrick collector))
+        if (other.gameObject.TryGetComponent(out Bag bag))
         {
-            CollectToBag(collector);
 
-            collector.Put();
+            CollectToBag(bag);
+            bag.Put();
 
-            Taken?.Invoke(); 
+            Taken?.Invoke();
         }
     }
 
-    private void CollectToBag(CollectorHoneyBrick collector)
+    private void CollectToBag(Bag bag)
     {
-        Vector3 positionBrickOnPlayers = collector.BrickContainer.Places[collector.BrickCount].transform.position;
-        Vector3 rotationBrickToPlayer = new Vector3(0,-90,0);
+        transform.DOShakePosition(0.1f, new Vector3(0f, 0f , 0.5f));
 
-        transform.SetParent(collector.transform);
-        transform.DOMove(positionBrickOnPlayers, 0f);
-        transform.DOLocalRotate(rotationBrickToPlayer, 0f);
+       transform.SetParent(bag.transform);
+       transform.position = bag.BrickContainer.Places[bag.BrickCount].transform.position;
+       transform.rotation = bag.BrickContainer.Places[bag.BrickCount].transform.rotation;
     }
 
-    public void Collect(Vector3 targetPosition)
-    {
-        MoveToPlayer(targetPosition);
-    }
 
-    private void MoveToPlayer(Vector3 targetPosition)
-    {
-        Vector3 rotationValueInPlace = new Vector3(0, -90, -90);
-
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(transform.DOMoveX(-1f, 0.3f).SetRelative());
-        sequence.Append(transform.DOMoveY(1f, 0.3f).SetRelative());
-        sequence.Append(transform.DOMove(targetPosition, 0.3f));
-        sequence.Insert(0.5f, transform.DORotate(rotationValueInPlace, 0.3f).SetRelative());
-    }
-
-    public void PutBrick(Vector3 targetPosition, Quaternion targetRotation)
-    {
-        transform.DOMove(targetPosition, 0);
-
-      //  Destroy(gameObject);
-
-        Debug.Log("Брик улетео");
-    }
 }

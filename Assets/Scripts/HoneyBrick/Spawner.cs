@@ -27,15 +27,15 @@ public class Spawner : MonoBehaviour
 
     private void InstantiateHoneyBrick()
     {
-        OpenHiveCover();
 
         PlaceHoneyBrick brickPlace = _honeyBrickContainer.Places.FirstOrDefault(place => place.IsAvailible);
-        if (brickPlace != default)
+        if (brickPlace != null)
         {
+            OpenHiveCover(); 
+
             HoneyBrick brick = Instantiate(_honeyBrickTemplate, _spawnPoint.position, _honeyBrickTemplate.transform.rotation);
 
-            brick.GetComponent<CollectableHoneyBrick>().Collect(brickPlace.transform.position);
-
+            brick.GetComponent<MovableHoneyBrick>().MoveFromHive(brickPlace.transform.position);
 
             brickPlace.Reserve(brick);
 
