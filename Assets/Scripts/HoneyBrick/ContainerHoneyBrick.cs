@@ -7,11 +7,11 @@ public class ContainerHoneyBrick : MonoBehaviour
 {
     [SerializeField] private List<PlaceHoneyBrick> _honeyBrickPlaces;
 
-    private int _currentBricksAmount;
+    private int _currentHoneyBricksCollected;
 
     public IReadOnlyList<PlaceHoneyBrick> Places => _honeyBrickPlaces;
 
-    private int _maxBricksAmount => _honeyBrickPlaces.Count;
+    private int _needHoneyBricksToBuy => _honeyBrickPlaces.Count;
 
     public event UnityAction<int, int> BrickAmountChanged;
     public event UnityAction BrickPlaced;
@@ -19,7 +19,7 @@ public class ContainerHoneyBrick : MonoBehaviour
 
     private void Start()
     {
-        BrickAmountChanged?.Invoke(_currentBricksAmount, _maxBricksAmount);
+        BrickAmountChanged?.Invoke(_needHoneyBricksToBuy, _currentHoneyBricksCollected);
     }
 
     private void OnEnable()
@@ -46,10 +46,10 @@ public class ContainerHoneyBrick : MonoBehaviour
 
     public void AddBrick()
     {
-        _currentBricksAmount++;
+        _currentHoneyBricksCollected++;
         BrickPlaced?.Invoke();
 
-      //  BrickAmountChanged?.Invoke(_currentBricksAmount, _maxBricksAmount);
+        BrickAmountChanged?.Invoke(_needHoneyBricksToBuy, _currentHoneyBricksCollected);
     }
 
     //private void OnBrickTaken(PlaceHoneyBrick position)
