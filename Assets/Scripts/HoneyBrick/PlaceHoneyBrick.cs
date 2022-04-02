@@ -5,14 +5,14 @@ using UnityEngine.Events;
 
 public class PlaceHoneyBrick : MonoBehaviour
 {
-    [SerializeField] private bool _isInfinite;
+    [SerializeField] private bool _isInfinite;//
 
     private HoneyBrick _honeyBrick;
 
     public bool IsAvailible { get; private set; }
 
     public event UnityAction<PlaceHoneyBrick> PlaceFree;
-    //public event UnityAction PlaceTaken;
+    public event UnityAction PlaceTaken;
 
     private void Start()
     {

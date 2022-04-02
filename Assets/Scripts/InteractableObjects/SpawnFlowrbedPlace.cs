@@ -1,16 +1,27 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class SpawnFlowrbedPlace : MonoBehaviour
 {
     [SerializeField] private Flowerbed _flowerbedTemplate;
     [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private DeliveryHoneyBrick _deliveryHoney;
 
-    private void OnCollisionEnter(Collision collision)
+    public event UnityAction SpawnComplete;
+
+    private void OnCollisionStay(Collision collision)
     {
-       // Flowerbed flowerbed = Instantiate(_flowerbedTemplate, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
-;
-      //  ChangeScaleBeforeSpawn(flowerbed);
+        if (_deliveryHoney.CollectedAll() && collision.gameObject.TryGetComponent(out Player player))
+        {
+            gameObject.SetActive(false);
+
+            SpawnComplete?.Invoke();
+
+            Flowerbed flowerbed = Instantiate(_flowerbedTemplate, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
+
+            ChangeScaleBeforeSpawn(flowerbed);
+        }
     }
 
     private void ChangeScaleBeforeSpawn(Flowerbed flowerbed)

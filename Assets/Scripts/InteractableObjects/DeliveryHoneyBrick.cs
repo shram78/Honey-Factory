@@ -1,10 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.Events;
-using DG.Tweening;
-
 
 public class DeliveryHoneyBrick : MonoBehaviour
 {
@@ -15,7 +12,6 @@ public class DeliveryHoneyBrick : MonoBehaviour
     private Coroutine CollectCoroutine;
 
     public event UnityAction<HoneyBrick> Collected;//
-
 
     //
     private void OnEnable()
@@ -29,6 +25,15 @@ public class DeliveryHoneyBrick : MonoBehaviour
     }
     //
 
+    public bool CollectedAll()
+    {
+        PlaceHoneyBrick brickPlace = _container.Places.FirstOrDefault(place => place.IsAvailible);
+        if (brickPlace == null)
+        {
+            return true;
+        }
+        return false;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -53,6 +58,8 @@ public class DeliveryHoneyBrick : MonoBehaviour
 
         while (Physics.CheckBox(_deliveryArea.center, _deliveryArea.size))
         {
+            CollectedAll();
+
             PlaceHoneyBrick place = _container.Places.FirstOrDefault(place => place.IsAvailible);
 
             if (place != default)
@@ -61,19 +68,17 @@ public class DeliveryHoneyBrick : MonoBehaviour
 
                 if (brick != null)
                 {
-                    MovableHoneyBrick fly = brick.GetComponent<MovableHoneyBrick>();
-                    fly.InitFlyRoute(place.transform.position, place.transform.rotation);
+                    MovableHoneyBrick movable = brick.GetComponent<MovableHoneyBrick>();
+                    movable.Unload(place.transform.position, place.transform.rotation);
 
                     place.Reserve(brick);
 
-                    Collected?.Invoke(brick);
+                    Collected?.Invoke(brick); //??
                 }
             }
-
             yield return new WaitForSeconds(_collectionDelay);
         }
     }
-
 
     private void OnBrickCollected(HoneyBrick brick)
     {

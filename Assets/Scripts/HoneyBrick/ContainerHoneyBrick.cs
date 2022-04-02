@@ -15,7 +15,7 @@ public class ContainerHoneyBrick : MonoBehaviour
 
     public event UnityAction<int, int> BrickAmountChanged;
     public event UnityAction BrickPlaced;
-   // public event UnityAction BuildingComplete;
+   // public event UnityAction BuildingComplete; // rename
 
     private void Start()
     {
@@ -28,21 +28,21 @@ public class ContainerHoneyBrick : MonoBehaviour
         {
             _honeyBrickPlaces.Add(transform.GetChild(i).GetComponent<PlaceHoneyBrick>());
 
-            // _honeyBrickPlaces[i].PlaceFree += OnBrickTaken;
+             _honeyBrickPlaces[i].PlaceFree += OnBrickTaken;
         }
 
-        //   _honeyBrickPlaces[transform.childCount - 1].PlaceTaken += OnLastPlaceTaken;
+          // _honeyBrickPlaces[transform.childCount - 1].PlaceTaken += OnLastPlaceTaken;
     }
 
-    //private void OnDisable()
-    //{
-    //    for (int i = 0; i < transform.childCount; i++)
-    //    {
-    //        _honeyBrickPlaces[i].PlaceFree -= OnBrickTaken;
-    //    }
+    private void OnDisable()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            _honeyBrickPlaces[i].PlaceFree -= OnBrickTaken;
+        }
 
-    //   // _honeyBrickPlaces[transform.childCount - 1].PlaceTaken -= OnLastPlaceTaken;
-    //}
+        // _honeyBrickPlaces[transform.childCount - 1].PlaceTaken -= OnLastPlaceTaken;
+    }
 
     public void AddBrick()
     {
@@ -52,14 +52,28 @@ public class ContainerHoneyBrick : MonoBehaviour
         BrickAmountChanged?.Invoke(_needHoneyBricksToBuy, _currentHoneyBricksCollected);
     }
 
-    //private void OnBrickTaken(PlaceHoneyBrick position)
-    //{
-    //    _currentBricksAmount--;
-    //    BrickAmountChanged?.Invoke(_currentBricksAmount, _maxBricksAmount);
-    //}
+    private void OnBrickTaken(PlaceHoneyBrick position)
+    {
+        _currentHoneyBricksCollected--;
+        BrickAmountChanged?.Invoke(_currentHoneyBricksCollected, _needHoneyBricksToBuy);
+    }
+
+    public void CanIBuild()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            _honeyBrickPlaces.Add(transform.GetChild(i).GetComponent<PlaceHoneyBrick>());
+
+            _honeyBrickPlaces[i].PlaceFree += OnBrickTaken;
+        }
+
+
+        Debug.Log("ְֽ׳ְָֽÞ סענמטעü");
+    }
 
     //private void OnLastPlaceTaken()
     //{
     //    BuildingComplete?.Invoke();
+    //    Debug.Log("Complete!!!!!");
     //}
 }
