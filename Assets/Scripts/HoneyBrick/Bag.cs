@@ -16,21 +16,20 @@ public class Bag : MonoBehaviour
 
     private bool _isFull => _brickCount >= _brickContainer.Places.Count;
 
-    public event UnityAction BrickCollected;
-    public event UnityAction BrickGiven;
+    public event UnityAction<int> BrickCollected;
+    public event UnityAction<int> BrickSell;
 
     public void Put()
     {
-        BrickCollected?.Invoke();
         _brickCount++;
 
+        BrickCollected?.Invoke(_brickCount); //для виджета
+
         if (_isFull)
-        {
             _brickCollector.enabled = false;
-        }
     }
 
-    public HoneyBrick GiveBrick(Vector3 targetPosition, Quaternion targetRotation)
+    public HoneyBrick SellBrick(Vector3 targetPosition, Quaternion targetRotation)
     {
         HoneyBrick honeyBrick = null;
 
@@ -40,10 +39,10 @@ public class Bag : MonoBehaviour
 
             honeyBrick = transform.GetChild(_brickCount).GetComponent<HoneyBrick>();
 
-            BrickGiven?.Invoke();
+            BrickSell?.Invoke(_brickCount);
 
-            if (_brickCollector.enabled == false && _isFull == false)
-                _brickCollector.enabled = true;
+            if (_brickCollector.enabled == false && _isFull == false)//
+                _brickCollector.enabled = true;//
         }
 
         return honeyBrick;

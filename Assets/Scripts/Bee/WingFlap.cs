@@ -16,7 +16,6 @@ public class WingFlap : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
         sequence.Append(_rightWing.transform.DOLocalRotate(new Vector3(45, 0, 0), 0.05f).SetRelative());
         sequence.Append(_rightWing.transform.DOLocalRotate(new Vector3(-45, 0, 0), 0.05f).SetRelative());
-
         sequence.Append(_leftWing.transform.DOLocalRotate(new Vector3(45, 0, 0), 0.05f).SetRelative());
         sequence.Append(_leftWing.transform.DOLocalRotate(new Vector3(-45, 0, 0), 0.05f).SetRelative());
 

@@ -64,7 +64,7 @@ public class DeliveryHoneyBrick : MonoBehaviour
 
             if (place != default)
             {
-                brick = player.Bag.GiveBrick(place.transform.position, place.transform.rotation);
+                brick = player.Bag.SellBrick(place.transform.position, place.transform.rotation);
 
                 if (brick != null)
                 {

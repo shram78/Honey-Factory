@@ -9,17 +9,17 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
     
     private void OnEnable()
     {
-        _container.BrickAmountChanged += ShowCount;
+        _container.BrickAmountChanged += OnShowCount;
         _spawnFlowrbedPlace.SpawnComplete += OnHide;
     }
 
     private void OnDisable()
     {
-        _container.BrickAmountChanged -= ShowCount;
+        _container.BrickAmountChanged -= OnShowCount;
         _spawnFlowrbedPlace.SpawnComplete -= OnHide;
     }
 
-    private void ShowCount(int needHoneyBricksToBuy, int currentHoneyBricksCollected)
+    private void OnShowCount(int needHoneyBricksToBuy, int currentHoneyBricksCollected)
     {
         int honeyBrickToShow = needHoneyBricksToBuy - currentHoneyBricksCollected;
         _honeyBrickText.text = honeyBrickToShow.ToString();

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -56,19 +55,6 @@ public class ContainerHoneyBrick : MonoBehaviour
     {
         _currentHoneyBricksCollected--;
         BrickAmountChanged?.Invoke(_currentHoneyBricksCollected, _needHoneyBricksToBuy);
-    }
-
-    public void CanIBuild()
-    {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            _honeyBrickPlaces.Add(transform.GetChild(i).GetComponent<PlaceHoneyBrick>());
-
-            _honeyBrickPlaces[i].PlaceFree += OnBrickTaken;
-        }
-
-
-        Debug.Log("ְֽ׳ְָֽÞ סענמטעü");
     }
 
     //private void OnLastPlaceTaken()
