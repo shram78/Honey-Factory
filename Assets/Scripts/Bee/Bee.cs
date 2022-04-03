@@ -13,9 +13,13 @@ public class Bee : MonoBehaviour
 
     private void Start()
     {
+        gameObject.GetComponentInParent<Transform>();
+
         _finishWaypoint = FindObjectOfType<PointBeeDelivery>(); 
 
         transform.position = _startWaypoint.position;
+
+        transform.DOLookAt(_finishWaypoint.transform.position, 1f);
 
         MoveToHive();
     }
@@ -23,10 +27,9 @@ public class Bee : MonoBehaviour
     private void MoveToHive()
     {
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(transform.DOLookAt(_finishWaypoint.transform.position, 0));
         sequence.Append(transform.DOMove(_finishWaypoint.transform.position, _flyTime).SetEase(Ease.Flash).SetDelay(_timeToCollectHoney));
-        sequence.Append(transform.DOLookAt(_startWaypoint.position, 0));
-        sequence.Append(transform.DOMove(_startWaypoint.position, _flyTime).SetEase(Ease.Flash));
+        sequence.Append(transform.DOLookAt(_startWaypoint.transform.position, 0.1f));
+        sequence.Append(transform.DOMove(_startWaypoint.transform.position, _flyTime).SetEase(Ease.Flash));//.SetEase(Ease.Flash)) ;
         sequence.SetLoops(-1);
     }
 
