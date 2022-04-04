@@ -8,6 +8,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private InputMouseComand _inputMouseComand;
     private const string _speed = "Speed";
+    private bool _isHaveScate = false;
 
     private void OnEnable()
     {
@@ -30,6 +31,18 @@ public class PlayerAnimator : MonoBehaviour
 
     private void PlayWalkAnimation()
     {
+      // if (bool have scate)
+     //   {
         _animator.SetFloat(_speed, 1);
+      //  }
+      //  else
+        {
+
+        }
+    }
+
+    private void OnHaveScate()
+    {
+        _isHaveScate = true;
     }
 }

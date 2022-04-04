@@ -5,7 +5,7 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
 {
     [SerializeField] private ContainerHoneyBrick _container;
     [SerializeField] private TMP_Text _honeyBrickText;
-    [SerializeField] private SpawnFlowrbedPlace _spawnFlowrbedPlace;
+    [SerializeField] private SpawnInterractiveObjectPlace _spawnFlowrbedPlace;
     
     private void OnEnable()
     {
