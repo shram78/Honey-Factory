@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
+    [SerializeField] private SpawnScatePlace _spawnScate;
 
     private InputMouseComand _inputMouseComand;
     private const string _speed = "Speed";
@@ -16,12 +17,14 @@ public class PlayerAnimator : MonoBehaviour
 
         _inputMouseComand.OnCursorPressed += PlayWalkAnimation;
         _inputMouseComand.OnCursorReleased += PlayIdleAnimation;
+        _spawnScate.GetScate += OnHaveScate;
     }
 
     private void OnDisable()
     {
         _inputMouseComand.OnCursorPressed -= PlayWalkAnimation;
         _inputMouseComand.OnCursorReleased -= PlayIdleAnimation;
+        _spawnScate.GetScate -= OnHaveScate;
     }
 
     private void PlayIdleAnimation()
@@ -44,5 +47,7 @@ public class PlayerAnimator : MonoBehaviour
     private void OnHaveScate()
     {
         _isHaveScate = true;
+      //  _animator.SetBool("IsHaveScate", true);
+        _animator.SetTrigger("HaveScate");
     }
 }

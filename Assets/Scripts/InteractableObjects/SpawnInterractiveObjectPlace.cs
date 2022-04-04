@@ -27,10 +27,10 @@ public class SpawnInterractiveObjectPlace : MonoBehaviour
         }
     }
 
-    private void CreateSpawnEffect(GameObject flowerbed)
+    protected virtual void CreateSpawnEffect(GameObject gameObject)
     {
-        Vector3 targetScale = new Vector3(0.5f, 0.5f, 0.5f);
+        Vector3 targetScale = new Vector3(0.3f, 0.3f, 0.3f);
 
-        flowerbed.transform.DOPunchScale(targetScale, 0.5f, 1, 0.9f);
+        gameObject.transform.DOPunchScale(targetScale, 0.5f, 1, 1);
     }
 }
