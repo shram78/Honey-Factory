@@ -6,7 +6,16 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
     [SerializeField] private ContainerHoneyBrick _container;
     [SerializeField] private TMP_Text _honeyBrickText;
     [SerializeField] private SpawnInterractiveObjectPlace _spawnFlowrbedPlace;
-    
+
+    private Canvas _canvas;
+    private Quaternion _rotateToCamera;
+
+    private void Start()
+    {
+        _canvas = GetComponent<Canvas>();
+        _rotateToCamera = Camera.main.transform.rotation;
+    }
+
     private void OnEnable()
     {
         _container.BrickAmountChanged += OnShowCount;
@@ -28,5 +37,11 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
     private void OnHide()
     {
         gameObject.SetActive(false);
+    }
+
+    private void LateUpdate()
+    {
+        if (_canvas.transform.rotation != _rotateToCamera)
+            _canvas.transform.rotation = _rotateToCamera;
     }
 }
