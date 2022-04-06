@@ -12,6 +12,8 @@ public class DeliveryHoneyBrick : MonoBehaviour
     private Coroutine CollectCoroutine;
 
     public event UnityAction<HoneyBrick> Collected;//
+    public event UnityAction EnterArea;
+    public event UnityAction ExitArea;
 
     //
     private void OnEnable()
@@ -39,6 +41,8 @@ public class DeliveryHoneyBrick : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Player player))
         {
+            EnterArea?.Invoke();
+
             CollectCoroutine = StartCoroutine(CollectFrom(player));
         }
     }
@@ -47,6 +51,8 @@ public class DeliveryHoneyBrick : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out Player player))
         {
+            ExitArea?.Invoke();
+
             if (CollectCoroutine != null)
                 StopCoroutine(CollectCoroutine);
         }
