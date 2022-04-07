@@ -7,7 +7,7 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
 {
     [SerializeField] private ContainerHoneyBrick _container;
     [SerializeField] private TMP_Text _honeyBrickText;
-    [SerializeField] private SpawnInterractiveObjectPlace _spawnFlowrbedPlace;
+    [SerializeField] private SpawnInterractiveObjectPlace _spawnInterractiveObjectPlace;
     [SerializeField] private GameObject _panelWidget;
     [SerializeField] private DeliveryHoneyBrick _deliveryHoneyBrick;
 
@@ -25,7 +25,7 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
     private void OnEnable()
     {
         _container.BrickAmountChanged += OnShowCount;
-        _spawnFlowrbedPlace.SpawnComplete += OnHide;
+        _spawnInterractiveObjectPlace.SpawnComplete += OnHide;
         _deliveryHoneyBrick.EnterArea += OnScaleUp;
         _deliveryHoneyBrick.ExitArea += OnScaleDown;
     }
@@ -33,7 +33,7 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
     private void OnDisable()
     {
         _container.BrickAmountChanged -= OnShowCount;
-        _spawnFlowrbedPlace.SpawnComplete -= OnHide;
+        _spawnInterractiveObjectPlace.SpawnComplete -= OnHide;
         _deliveryHoneyBrick.EnterArea -= OnScaleUp;
         _deliveryHoneyBrick.ExitArea -= OnScaleDown;
     }

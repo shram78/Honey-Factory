@@ -8,6 +8,7 @@ public class SpawnScatePlace : SpawnInterractiveObjectPlace
 
     public event UnityAction GetScate;
 
+
     protected override void CreateSpawnEffect(GameObject gameObject)
     {
          Vector3 targetScale = new Vector3(0.1f, 0.1f, 0.1f);

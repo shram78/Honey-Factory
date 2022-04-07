@@ -717,7 +717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container: {fileID: 9218140002138806491}
   _honeyBrickText: {fileID: 1909322214274316845}
-  _spawnFlowrbedPlace: {fileID: 9218140001794484347}
+  _spawnInterractiveObjectPlace: {fileID: 9218140001794484347}
   _panelWidget: {fileID: 9218140000799975779}
   _deliveryHoneyBrick: {fileID: 9218140001794484337}
 --- !u!1 &9218140001042123661
