@@ -14,6 +14,8 @@ public class SpawnScatePlace : SpawnInterractiveObjectPlace
         
         gameObject.transform.DOPunchScale(targetScale, 0.2f, 0, 1);
 
+        _player.StandOnScate();
+
         SetParrent(gameObject);
     }
 
