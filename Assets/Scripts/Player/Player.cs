@@ -12,6 +12,6 @@ public class Player : MonoBehaviour
     {
         Vector3 scateHight = new Vector3(0, 0.1f, 0);
 
-        transform.position = transform.position+ scateHight;
+        transform.position = transform.position + scateHight;
     }
 }

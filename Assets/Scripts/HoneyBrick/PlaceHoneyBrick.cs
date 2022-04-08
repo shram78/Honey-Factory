@@ -12,7 +12,6 @@ public class PlaceHoneyBrick : MonoBehaviour
     public bool IsAvailible { get; private set; }
 
     public event UnityAction<PlaceHoneyBrick> PlaceFree;
-    public event UnityAction PlaceTaken;
 
     private void Start()
     {

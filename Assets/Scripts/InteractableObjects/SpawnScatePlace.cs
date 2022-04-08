@@ -8,12 +8,11 @@ public class SpawnScatePlace : SpawnInterractiveObjectPlace
 
     public event UnityAction GetScate;
 
-
     protected override void CreateSpawnEffect(GameObject gameObject)
     {
-         Vector3 targetScale = new Vector3(0.1f, 0.1f, 0.1f);
+         Vector3 targetScale = new Vector3(0.07f, 0.07f, 0.07f);
         
-        gameObject.transform.DOPunchScale(targetScale, 0.2f, 0, 1);
+        gameObject.transform.DOPunchScale(targetScale, 0.7f, 0, 1);
 
         _player.StandOnScate();
 
