@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 9218140000998494815}
   - component: {fileID: 9218140000998494814}
   - component: {fileID: 9218140000998494801}
+  - component: {fileID: 5506104446856508305}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -720,6 +721,18 @@ MonoBehaviour:
   _spawnInterractiveObjectPlace: {fileID: 9218140001794484347}
   _panelWidget: {fileID: 9218140000799975779}
   _deliveryHoneyBrick: {fileID: 9218140001794484337}
+--- !u!114 &5506104446856508305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218140000998494812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9fadbbf330fdd44eae797f72a0cf083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9218140001042123661
 GameObject:
   m_ObjectHideFlags: 0

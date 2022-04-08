@@ -8026,6 +8026,7 @@ MonoBehaviour:
   _prefabTemplate: {fileID: 2702951034820462116, guid: 6f4198cde5d89b94fb789dceb40a3ac4, type: 3}
   _spawnPoint: {fileID: 1866194000679135675}
   _deliveryHoney: {fileID: 1866193999869755990}
+  _smoke: {fileID: 4874378178627603228, guid: 240b8e7288564d843af8d18617b202e8, type: 3}
 --- !u!65 &1866193999869755989
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8537,6 +8538,7 @@ GameObject:
   - component: {fileID: 1866194001235884152}
   - component: {fileID: 1866194001235884153}
   - component: {fileID: 1866194001235884150}
+  - component: {fileID: 1523224283736428377}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -8642,6 +8644,18 @@ MonoBehaviour:
   _spawnInterractiveObjectPlace: {fileID: 1866193999869755996}
   _panelWidget: {fileID: 1866194000897426244}
   _deliveryHoneyBrick: {fileID: 1866193999869755990}
+--- !u!114 &1523224283736428377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866194001235884155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9fadbbf330fdd44eae797f72a0cf083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1866194001260700074
 GameObject:
   m_ObjectHideFlags: 0

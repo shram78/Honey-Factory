@@ -11,14 +11,11 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
     [SerializeField] private GameObject _panelWidget;
     [SerializeField] private DeliveryHoneyBrick _deliveryHoneyBrick;
 
-    private Canvas _canvas;
     private Quaternion _rotateToCamera;
     private RectTransform _rectTransfromWidget;
 
     private void Start()
     {
-        _canvas = GetComponent<Canvas>();
-        _rotateToCamera = Camera.main.transform.rotation;
         _rectTransfromWidget = _panelWidget.GetComponent<RectTransform>();
     }
 
@@ -57,11 +54,5 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
     private void OnHide()
     {
         gameObject.SetActive(false);
-    }
-
-    private void LateUpdate()
-    {
-        if (_canvas.transform.rotation != _rotateToCamera)
-            _canvas.transform.rotation = _rotateToCamera;
     }
 }
