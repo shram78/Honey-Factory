@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: dedc4d4f0ee41f04289db5c5ba20afbf
+guid: 05beb42b588d75f4ca31b32773de2641
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FlowerBoxDiff
+    second: {fileID: 2100000, guid: d241f204c4818524c9e5812d313fa54b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrontNumber
+    second: {fileID: 2100000, guid: a73af675ff9759843a44d5127faddcbd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TierDiffColor
+    second: {fileID: 2100000, guid: 5815d24e2ae25b24ba8f62c2f07e42c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TruckDiffColor
+    second: {fileID: 2100000, guid: 4002f3c852712124cac67ff7f81efcb8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
