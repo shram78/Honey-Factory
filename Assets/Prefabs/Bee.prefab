@@ -90,7 +90,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1240396306601267529}
-  - component: {fileID: -3891802070535527184}
   m_Layer: 0
   m_Name: Bee
   m_TagString: Untagged
@@ -120,20 +119,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3891802070535527184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908705400356375539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef5a1b515bada9448cda81605c455e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rightWing: {fileID: 1063160105507846626}
-  _leftWing: {fileID: 2689887433718757816}
 --- !u!1 &2561646742615201387
 GameObject:
   m_ObjectHideFlags: 0

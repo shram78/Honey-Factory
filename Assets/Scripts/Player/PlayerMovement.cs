@@ -1,46 +1,35 @@
 using UnityEngine;
-using UnityEngine.Events;
 
-[RequireComponent(typeof(InputMouseComand))]
-[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(MouseButtonClicker))]
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private LayerMask _canMoveLayer;
     [SerializeField] private float _speed;
 
-    private InputMouseComand _inputMouseComand;
-    private MouseClickChecker _mouseClickChecker;
-
-    public event UnityAction Walking;
-
-    private void Start()
-    {
-        _mouseClickChecker = GetComponent<MouseClickChecker>();
-    }
+    private MouseButtonClicker _inputMouseComand;
 
     private void OnEnable()
     {
-        _inputMouseComand = GetComponent<InputMouseComand>();
+        _inputMouseComand = GetComponent<MouseButtonClicker>();
 
-
-        _inputMouseComand.OnCursorPressed += Move;
+        _inputMouseComand.CursorPressed += Move;
     }
 
     private void OnDisable()
     {
-        _inputMouseComand.OnCursorPressed -= Move;
+        _inputMouseComand.CursorPressed -= Move;
     }
 
     private void Move()
     {
-        Vector3 direction = _mouseClickChecker.GetPoint() - transform.position;
+        Vector3 direction = GetPoint() - transform.position;
+
         direction.y = 0f;
 
         Rotate(direction);
-      
-        transform.Translate(direction.normalized * _speed * Time.deltaTime, Space.World);
 
-        Walking?.Invoke();
+        transform.Translate(direction.normalized * _speed * Time.deltaTime, Space.World);
     }
 
     private void Rotate(Vector3 direction)
@@ -50,5 +39,16 @@ public class PlayerMovement : MonoBehaviour
         lookRotation.z = 0;
 
         transform.rotation = lookRotation;
+    }
+
+    private Vector3 GetPoint()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit raycastHit;
+
+        if (Physics.Raycast(ray, out raycastHit, 100, _canMoveLayer))
+            return raycastHit.point;
+
+        return transform.position;
     }
 }

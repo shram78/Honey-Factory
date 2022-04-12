@@ -27,7 +27,6 @@ public class Spawner : MonoBehaviour
 
     private void InstantiateHoneyBrick()
     {
-
         PlaceHoneyBrick brickPlace = _honeyBrickContainer.Places.FirstOrDefault(place => place.IsAvailible);
         if (brickPlace != null)
         {

@@ -11,11 +11,10 @@ public class DeliveryHoneyBrick : MonoBehaviour
 
     private Coroutine CollectCoroutine;
 
-    public event UnityAction<HoneyBrick> Collected;//
+    public event UnityAction<HoneyBrick> Collected;
     public event UnityAction EnterArea;
     public event UnityAction ExitArea;
 
-    //
     private void OnEnable()
     {
         Collected += OnBrickCollected;
@@ -24,17 +23,6 @@ public class DeliveryHoneyBrick : MonoBehaviour
     private void OnDisable()
     {
         Collected -= OnBrickCollected;
-    }
-    //
-
-    public bool CollectedAll()
-    {
-        PlaceHoneyBrick brickPlace = _container.Places.FirstOrDefault(place => place.IsAvailible);
-        if (brickPlace == null)
-        {
-            return true;
-        }
-        return false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,16 +58,17 @@ public class DeliveryHoneyBrick : MonoBehaviour
 
             if (place != default)
             {
-                brick = player.Bag.SellBrick(place.transform.position, place.transform.rotation);
+                brick = player.Bag.SellBrick();
 
                 if (brick != null)
                 {
                     MovableHoneyBrick movable = brick.GetComponent<MovableHoneyBrick>();
-                    movable.Unload(place.transform.position, place.transform.rotation);
+                    
+                    movable.Unload();
 
                     place.Reserve(brick);
 
-                    Collected?.Invoke(brick); //??
+                    Collected?.Invoke(brick); 
                 }
             }
             yield return new WaitForSeconds(_collectionDelay);
@@ -89,5 +78,12 @@ public class DeliveryHoneyBrick : MonoBehaviour
     private void OnBrickCollected(HoneyBrick brick)
     {
         _container.AddBrick();
+    }
+
+    public bool CollectedAll()
+    {
+        PlaceHoneyBrick brickPlace = _container.Places.FirstOrDefault(place => place.IsAvailible);
+
+        return (brickPlace == null);
     }
 }

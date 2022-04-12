@@ -1,29 +1,30 @@
 using UnityEngine;
 
+[RequireComponent(typeof(MouseButtonClicker))]
+
 public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    [SerializeField] private SpawnScatePlace _spawnScate;
+    [SerializeField] private SpawnScatePlace _spawnScatePlace;
 
-    private InputMouseComand _inputMouseComand;
+    private MouseButtonClicker _mouseButtonClicker;
     private const string _speed = "Speed";
     private const string _haveScate = "HaveScate";
 
-
     private void OnEnable()
     {
-        _inputMouseComand = GetComponent<InputMouseComand>();
+        _mouseButtonClicker = GetComponent<MouseButtonClicker>();
 
-        _inputMouseComand.OnCursorPressed += PlayWalkAnimation;
-        _inputMouseComand.OnCursorReleased += PlayIdleAnimation;
-        _spawnScate.GetScate += OnHaveScate;
+        _mouseButtonClicker.CursorPressed += PlayWalkAnimation;
+        _mouseButtonClicker.CursorReleased += PlayIdleAnimation;
+        _spawnScatePlace.GetScate += OnHaveScate;
     }
 
     private void OnDisable()
     {
-        _inputMouseComand.OnCursorPressed -= PlayWalkAnimation;
-        _inputMouseComand.OnCursorReleased -= PlayIdleAnimation;
-        _spawnScate.GetScate -= OnHaveScate;
+        _mouseButtonClicker.CursorPressed -= PlayWalkAnimation;
+        _mouseButtonClicker.CursorReleased -= PlayIdleAnimation;
+        _spawnScatePlace.GetScate -= OnHaveScate;
     }
 
     private void PlayIdleAnimation()

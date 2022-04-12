@@ -14,7 +14,6 @@ public class ContainerHoneyBrick : MonoBehaviour
 
     public event UnityAction<int, int> BrickAmountChanged;
     public event UnityAction BrickPlaced;
-   // public event UnityAction BuildingComplete; // rename
 
     private void Start()
     {
@@ -26,21 +25,7 @@ public class ContainerHoneyBrick : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             _honeyBrickPlaces.Add(transform.GetChild(i).GetComponent<PlaceHoneyBrick>());
-
-             _honeyBrickPlaces[i].PlaceFree += OnBrickTaken;
         }
-
-          // _honeyBrickPlaces[transform.childCount - 1].PlaceTaken += OnLastPlaceTaken;
-    }
-
-    private void OnDisable()
-    {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            _honeyBrickPlaces[i].PlaceFree -= OnBrickTaken;
-        }
-
-        // _honeyBrickPlaces[transform.childCount - 1].PlaceTaken -= OnLastPlaceTaken;
     }
 
     public void AddBrick()
@@ -50,16 +35,4 @@ public class ContainerHoneyBrick : MonoBehaviour
 
         BrickAmountChanged?.Invoke(_needHoneyBricksToBuy, _currentHoneyBricksCollected);
     }
-
-    private void OnBrickTaken(PlaceHoneyBrick position)
-    {
-        _currentHoneyBricksCollected--;
-        BrickAmountChanged?.Invoke(_currentHoneyBricksCollected, _needHoneyBricksToBuy);
-    }
-
-    //private void OnLastPlaceTaken()
-    //{
-    //    BuildingComplete?.Invoke();
-    //    Debug.Log("Complete!!!!!");
-    //}
 }

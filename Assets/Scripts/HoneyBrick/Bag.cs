@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,13 +21,14 @@ public class Bag : MonoBehaviour
     {
         _brickCount++;
 
-        BrickCollected?.Invoke(_brickCount); //для виджета
+        BrickCollected?.Invoke(_brickCount); 
 
         if (_isFull)
             _brickCollector.enabled = false;
     }
 
-    public HoneyBrick SellBrick(Vector3 targetPosition, Quaternion targetRotation)
+
+    public HoneyBrick SellBrick()
     {
         HoneyBrick honeyBrick = null;
 
@@ -41,8 +40,8 @@ public class Bag : MonoBehaviour
 
             BrickSell?.Invoke(_brickCount);
 
-            if (_brickCollector.enabled == false && _isFull == false)//
-                _brickCollector.enabled = true;//
+            if (_brickCollector.enabled == false && _isFull == false)
+                _brickCollector.enabled = true;
         }
 
         return honeyBrick;

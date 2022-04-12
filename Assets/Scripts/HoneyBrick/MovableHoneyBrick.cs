@@ -1,15 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-
 public class MovableHoneyBrick : MonoBehaviour
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private float _rotationSpeed;
-
-    public void Unload(Vector3 targetPosition, Quaternion targetRotation)
+    public void Unload()
     {
         Destroy(gameObject);
     }
