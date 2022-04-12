@@ -15,17 +15,17 @@ public class ContainerHoneyBrick : MonoBehaviour
     public event UnityAction<int, int> BrickAmountChanged;
     public event UnityAction BrickPlaced;
 
-    private void Start()
-    {
-        BrickAmountChanged?.Invoke(_needHoneyBricksToBuy, _currentHoneyBricksCollected);
-    }
-
     private void OnEnable()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
             _honeyBrickPlaces.Add(transform.GetChild(i).GetComponent<PlaceHoneyBrick>());
         }
+    }
+
+    private void Start()
+    {
+        BrickAmountChanged?.Invoke(_needHoneyBricksToBuy, _currentHoneyBricksCollected);
     }
 
     public void AddBrick()

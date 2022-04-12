@@ -10,13 +10,13 @@ public class SpawnPrinterPlace : MonoBehaviour
         _spawnScatePlace.SpawnComplete += OnShowPlace;
     }
 
-    private void OnDisable()
-    {
-        _spawnScatePlace.SpawnComplete -= OnShowPlace;
-    }
-
     private void OnShowPlace()
     {
         _hideObject.gameObject.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        _spawnScatePlace.SpawnComplete -= OnShowPlace;
     }
 }

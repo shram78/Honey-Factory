@@ -9,19 +9,18 @@ public class Spawner : MonoBehaviour
     [SerializeField] private HoneyBrick _honeyBrickTemplate;
     [SerializeField] private GameObject _hiveCover;
 
-    private float elapsedTime = 0;
+    private float _elapsedTime = 0;
     private float _currentSpawnDelay = 2f;
-
 
     private void Update()
     {
-        elapsedTime += Time.deltaTime;
+        _elapsedTime += Time.deltaTime;
 
-        if (elapsedTime >= _currentSpawnDelay)
+        if (_elapsedTime >= _currentSpawnDelay)
         {
             InstantiateHoneyBrick();
 
-            elapsedTime = 0;
+            _elapsedTime = 0;
         }
     }
 

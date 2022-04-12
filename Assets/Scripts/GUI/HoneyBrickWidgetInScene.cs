@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 
+[RequireComponent(typeof(RectTransform))]
 
 public class HoneyBrickWidgetInScene : MonoBehaviour
 {
@@ -11,13 +12,7 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
     [SerializeField] private GameObject _panelWidget;
     [SerializeField] private DeliveryHoneyBrick _deliveryHoneyBrick;
 
-    private Quaternion _rotateToCamera;
     private RectTransform _rectTransfromWidget;
-
-    private void Start()
-    {
-        _rectTransfromWidget = _panelWidget.GetComponent<RectTransform>();
-    }
 
     private void OnEnable()
     {
@@ -27,12 +22,9 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
         _deliveryHoneyBrick.ExitArea += OnScaleDown;
     }
 
-    private void OnDisable()
+    private void Start()
     {
-        _container.BrickAmountChanged -= OnShowCount;
-        _spawnInterractiveObjectPlace.SpawnComplete -= OnHide;
-        _deliveryHoneyBrick.EnterArea -= OnScaleUp;
-        _deliveryHoneyBrick.ExitArea -= OnScaleDown;
+        _rectTransfromWidget = _panelWidget.GetComponent<RectTransform>();
     }
 
     private void OnShowCount(int needHoneyBricksToBuy, int currentHoneyBricksCollected)
@@ -54,5 +46,13 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
     private void OnHide()
     {
         gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        _container.BrickAmountChanged -= OnShowCount;
+        _spawnInterractiveObjectPlace.SpawnComplete -= OnHide;
+        _deliveryHoneyBrick.EnterArea -= OnScaleUp;
+        _deliveryHoneyBrick.ExitArea -= OnScaleDown;
     }
 }

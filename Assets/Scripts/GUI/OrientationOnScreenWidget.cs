@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Canvas))]
+
 public class OrientationOnScreenWidget : MonoBehaviour
 {
     private Canvas _canvas;

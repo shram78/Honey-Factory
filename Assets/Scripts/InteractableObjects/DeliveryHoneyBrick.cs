@@ -20,11 +20,6 @@ public class DeliveryHoneyBrick : MonoBehaviour
         Collected += OnBrickCollected;
     }
 
-    private void OnDisable()
-    {
-        Collected -= OnBrickCollected;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out Player player))
@@ -63,12 +58,12 @@ public class DeliveryHoneyBrick : MonoBehaviour
                 if (brick != null)
                 {
                     MovableHoneyBrick movable = brick.GetComponent<MovableHoneyBrick>();
-                    
+
                     movable.Unload();
 
                     place.Reserve(brick);
 
-                    Collected?.Invoke(brick); 
+                    Collected?.Invoke(brick);
                 }
             }
             yield return new WaitForSeconds(_collectionDelay);
@@ -85,5 +80,10 @@ public class DeliveryHoneyBrick : MonoBehaviour
         PlaceHoneyBrick brickPlace = _container.Places.FirstOrDefault(place => place.IsAvailible);
 
         return (brickPlace == null);
+    }
+
+    private void OnDisable()
+    {
+        Collected -= OnBrickCollected;
     }
 }

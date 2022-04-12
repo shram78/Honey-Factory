@@ -19,14 +19,7 @@ public class PlayerAnimator : MonoBehaviour
         _mouseButtonClicker.CursorReleased += PlayIdleAnimation;
         _spawnScatePlace.GetScate += OnHaveScate;
     }
-
-    private void OnDisable()
-    {
-        _mouseButtonClicker.CursorPressed -= PlayWalkAnimation;
-        _mouseButtonClicker.CursorReleased -= PlayIdleAnimation;
-        _spawnScatePlace.GetScate -= OnHaveScate;
-    }
-
+     
     private void PlayIdleAnimation()
     {
         _animator.SetFloat(_speed, 0);
@@ -40,5 +33,11 @@ public class PlayerAnimator : MonoBehaviour
     private void OnHaveScate()
     {
         _animator.SetTrigger(_haveScate);
+    }
+    private void OnDisable()
+    {
+        _mouseButtonClicker.CursorPressed -= PlayWalkAnimation;
+        _mouseButtonClicker.CursorReleased -= PlayIdleAnimation;
+        _spawnScatePlace.GetScate -= OnHaveScate;
     }
 }
