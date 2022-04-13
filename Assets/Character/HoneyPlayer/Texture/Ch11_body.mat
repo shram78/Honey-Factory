@@ -115,7 +115,7 @@ Material:
     - _GradientCenterY: 0
     - _GradientEnabled: 0
     - _GradientSize: 10
-    - _LightContribution: 0.561
+    - _LightContribution: 0.521
     - _LightFalloffSize: 0.0001
     - _LightmapDirectionPitch: 80
     - _LightmapDirectionYaw: 138

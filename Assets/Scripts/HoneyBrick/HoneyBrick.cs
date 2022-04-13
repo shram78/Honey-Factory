@@ -8,7 +8,7 @@ public class HoneyBrick : MonoBehaviour
 
     private void OnEnable()
     {
-        boxCollider = GetComponent<BoxCollider>(); 
+        boxCollider = GetComponent<BoxCollider>();
 
         boxCollider.enabled = false;
     }
@@ -18,10 +18,6 @@ public class HoneyBrick : MonoBehaviour
         _elapsedTime += Time.deltaTime;
 
         if (_elapsedTime >= _delayAfterSpawn)
-        {
             boxCollider.enabled = true;
-
-           // _elapsedTime = 0;
-        }
     }
 }
