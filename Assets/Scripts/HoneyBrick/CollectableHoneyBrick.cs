@@ -20,9 +20,10 @@ public class CollectableHoneyBrick : MonoBehaviour
 
     private void CollectToBag(Bag bag)
     {
-        Vector3 shakeBrick = new Vector3(0f, 0f, 0.5f);
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(transform.DOLocalMoveZ(-0.5f, 0.05f).SetRelative());
+        sequence.Append(transform.DOLocalMoveZ(0.5f, 0.05f).SetRelative());
 
-        transform.DOShakePosition(0.1f, shakeBrick);
         transform.SetParent(bag.transform);
         transform.position = bag.BrickContainer.Places[bag.BrickCount].transform.position;
         transform.rotation = bag.BrickContainer.Places[bag.BrickCount].transform.rotation;
