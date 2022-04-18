@@ -10,9 +10,10 @@ public class SpawnScatePlace : SpawnInterractiveObjectPlace
 
     protected override void CreateSpawnEffect(GameObject gameObject)
     {
-         Vector3 targetScale = new Vector3(0.07f, 0.07f, 0.07f);
-        
-        gameObject.transform.DOPunchScale(targetScale, 0.7f, 0, 1);
+        Vector3 targetScale = new Vector3(0.07f, 0.07f, 0.07f);
+        float TimeEffect = 0.7f;
+
+        gameObject.transform.DOPunchScale(targetScale, TimeEffect, 0, 1);
 
         _player.StandOnScate();
 
@@ -21,7 +22,7 @@ public class SpawnScatePlace : SpawnInterractiveObjectPlace
 
     private void SetParrent(GameObject gameObject)
     {
-        gameObject.transform.SetParent(_player.transform);  
+        gameObject.transform.SetParent(_player.transform);
 
         GetScate?.Invoke();
     }

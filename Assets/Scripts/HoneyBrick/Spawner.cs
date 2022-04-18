@@ -43,11 +43,19 @@ public class Spawner : MonoBehaviour
 
     private void OpenHiveCover()
     {
+        float FirstOpenValue = 0.3f;
+        float SecondOpenValue = -0.05f;
+        float ThirdOpenValue = 0.05f;
+        float FourthOpenValue = 0.1f;
+        float FifthOpenValue = -0.4f;
+        float TimeToMoveFirstValue = 0.2f;
+        float TimeToMoveSecondValue = 0.1f;
+
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(_hiveCover.transform.DOMoveX(0.3f, 0.2f)).SetRelative();
-        sequence.Append(_hiveCover.transform.DOMoveX(-0.05f, 0.1f)).SetRelative();
-        sequence.Append(_hiveCover.transform.DOMoveX(0.05f, 0.1f)).SetRelative();
-        sequence.Append(_hiveCover.transform.DOMoveX(0.1f, 0.1f).SetRelative().SetDelay(0.7f));
-        sequence.Append(_hiveCover.transform.DOMoveX(-0.4f, 0.2f).SetRelative());
+        sequence.Append(_hiveCover.transform.DOMoveX(FirstOpenValue, TimeToMoveFirstValue)).SetRelative();
+        sequence.Append(_hiveCover.transform.DOMoveX(SecondOpenValue, TimeToMoveSecondValue)).SetRelative();
+        sequence.Append(_hiveCover.transform.DOMoveX(ThirdOpenValue, TimeToMoveSecondValue)).SetRelative();
+        sequence.Append(_hiveCover.transform.DOMoveX(FourthOpenValue, TimeToMoveSecondValue).SetRelative().SetDelay(0.7f));
+        sequence.Append(_hiveCover.transform.DOMoveX(FifthOpenValue, TimeToMoveFirstValue).SetRelative());
     }
 }

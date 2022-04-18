@@ -27,7 +27,8 @@ public class SpawnInterractiveObjectPlace : MonoBehaviour
     protected virtual void CreateSpawnEffect(GameObject gameObject)
     {
         Vector3 targetScale = new Vector3(0.3f, 0.3f, 0.3f);
+        float TimeEffect = 0.5f;
 
-        gameObject.transform.DOPunchScale(targetScale, 0.5f, 1, 1);
+        gameObject.transform.DOPunchScale(targetScale, TimeEffect, 1, 1);
     }
 }

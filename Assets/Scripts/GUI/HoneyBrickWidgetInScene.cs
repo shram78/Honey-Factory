@@ -35,12 +35,18 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
 
     private void OnScaleUp()
     {
-        _rectTransfromWidget.transform.DOScale(1.5f, 0.2f); 
+        float InteractionValue = 1.5f;
+        float TimeToChange = 0.2f;
+
+        _rectTransfromWidget.transform.DOScale(InteractionValue, TimeToChange); 
     }
 
     private void OnScaleDown()
     {
-        _rectTransfromWidget.transform.DOScale(1f, 0.2f); 
+        float StandartValue = 1f;
+        float TimeToChange = 0.2f;
+
+        _rectTransfromWidget.transform.DOScale(StandartValue, TimeToChange); 
     }
 
     private void OnHide()
