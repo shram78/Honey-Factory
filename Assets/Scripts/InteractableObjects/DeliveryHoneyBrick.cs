@@ -30,6 +30,11 @@ public class DeliveryHoneyBrick : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        Collected -= OnBrickCollected;
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.TryGetComponent(out Player player))
@@ -80,10 +85,5 @@ public class DeliveryHoneyBrick : MonoBehaviour
         PlaceHoneyBrick brickPlace = _container.Places.FirstOrDefault(place => place.IsAvailible);
 
         return (brickPlace == null);
-    }
-
-    private void OnDisable()
-    {
-        Collected -= OnBrickCollected;
     }
 }

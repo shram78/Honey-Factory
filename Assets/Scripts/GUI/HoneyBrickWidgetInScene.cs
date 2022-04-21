@@ -27,6 +27,13 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
         _rectTransfromWidget = _panelWidget.GetComponent<RectTransform>();
     }
 
+    private void OnDisable()
+    {
+        _container.BrickAmountChanged -= OnShowCount;
+        _spawnInterractiveObjectPlace.SpawnComplete -= OnHide;
+        _deliveryHoneyBrick.EnterArea -= OnScaleUp;
+        _deliveryHoneyBrick.ExitArea -= OnScaleDown;
+    }
     private void OnShowCount(int needHoneyBricksToBuy, int currentHoneyBricksCollected)
     {
         int honeyBrickToShow = needHoneyBricksToBuy - currentHoneyBricksCollected;
@@ -52,13 +59,5 @@ public class HoneyBrickWidgetInScene : MonoBehaviour
     private void OnHide()
     {
         gameObject.SetActive(false);
-    }
-
-    private void OnDisable()
-    {
-        _container.BrickAmountChanged -= OnShowCount;
-        _spawnInterractiveObjectPlace.SpawnComplete -= OnHide;
-        _deliveryHoneyBrick.EnterArea -= OnScaleUp;
-        _deliveryHoneyBrick.ExitArea -= OnScaleDown;
     }
 }

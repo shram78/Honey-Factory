@@ -12,14 +12,14 @@ public class PlayerHoneyWidget : MonoBehaviour
         _bag.BrickSell += OnShow;
     }
 
-    private void OnShow(int currentHoney)
-    {
-        _honeyBrickText.text = currentHoney.ToString();
-    }
-
     private void OnDisable()
     {
         _bag.BrickCollected -= OnShow;
         _bag.BrickSell -= OnShow;
+    }
+
+    private void OnShow(int currentHoney)
+    {
+        _honeyBrickText.text = currentHoney.ToString();
     }
 }
