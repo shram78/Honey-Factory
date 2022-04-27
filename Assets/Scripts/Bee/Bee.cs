@@ -9,15 +9,15 @@ public class Bee : MonoBehaviour
     [SerializeField] private GameObject _rightWing;
     [SerializeField] private GameObject _leftWing;
 
-    private PointBeeDelivery _finishWaypoint;
+    private Vector3 _finishWaypoint;
 
     private void Start()
     {
-        _finishWaypoint = FindObjectOfType<PointBeeDelivery>(); 
+        _finishWaypoint = new Vector3(0, 0.3f, 17); 
 
         transform.position = _startWaypoint.position;
 
-        transform.DOLookAt(_finishWaypoint.transform.position, 1f);
+        transform.DOLookAt(_finishWaypoint, 1f);
 
         MoveToHive();
 
@@ -29,7 +29,7 @@ public class Bee : MonoBehaviour
         float TimeToRotate = 0.1f;
 
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(transform.DOMove(_finishWaypoint.transform.position, _flyTime).SetEase(Ease.Flash).SetDelay(_timeToCollectHoney));
+        sequence.Append(transform.DOMove(_finishWaypoint, _flyTime).SetEase(Ease.Flash).SetDelay(_timeToCollectHoney));
         sequence.Append(transform.DOLookAt(_startWaypoint.transform.position, TimeToRotate));
         sequence.Append(transform.DOMove(_startWaypoint.transform.position, _flyTime).SetEase(Ease.Flash));
         sequence.SetLoops(-1);
