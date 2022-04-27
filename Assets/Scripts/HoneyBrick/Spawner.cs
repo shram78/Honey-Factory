@@ -55,7 +55,7 @@ public class Spawner : MonoBehaviour
         sequence.Append(_hiveCover.transform.DOMoveX(FirstOpenValue, TimeToMoveFirstValue)).SetRelative();
         sequence.Append(_hiveCover.transform.DOMoveX(SecondOpenValue, TimeToMoveSecondValue)).SetRelative();
         sequence.Append(_hiveCover.transform.DOMoveX(ThirdOpenValue, TimeToMoveSecondValue)).SetRelative();
-        sequence.Append(_hiveCover.transform.DOMoveX(FourthOpenValue, TimeToMoveSecondValue).SetRelative().SetDelay(0.7f));
+        sequence.Append(_hiveCover.transform.DOMoveX(FourthOpenValue, TimeToMoveSecondValue).SetRelative().SetDelay(0.4f));
         sequence.Append(_hiveCover.transform.DOMoveX(FifthOpenValue, TimeToMoveFirstValue).SetRelative());
     }
 }
