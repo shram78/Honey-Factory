@@ -62,9 +62,9 @@ public class DeliveryHoneyBrick : MonoBehaviour
 
                 if (brick != null)
                 {
-                    MovableHoneyBrick movable = brick.GetComponent<MovableHoneyBrick>();
+                     MovableHoneyBrick movable = brick.GetComponent<MovableHoneyBrick>();
 
-                    movable.Unload();
+                     movable.Unload();
 
                     place.Reserve(brick);
 

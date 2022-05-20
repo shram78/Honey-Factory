@@ -27,7 +27,6 @@ public class Bag : MonoBehaviour
             _brickCollector.enabled = false;
     }
 
-
     public HoneyBrick SellBrick()
     {
         HoneyBrick honeyBrick = null;

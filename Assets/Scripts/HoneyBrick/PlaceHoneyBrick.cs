@@ -7,8 +7,6 @@ public class PlaceHoneyBrick : MonoBehaviour
 
     public bool IsAvailible { get; private set; }
 
-    public event UnityAction<PlaceHoneyBrick> PlaceFree;
-
     private void Start()
     {
         IsAvailible = true;
@@ -24,7 +22,6 @@ public class PlaceHoneyBrick : MonoBehaviour
     public void Free() 
     {
         IsAvailible = true;
-        PlaceFree?.Invoke(this);
        _honeyBrick.GetComponent<CollectableHoneyBrick>().Taken -= Free;
     }
 }

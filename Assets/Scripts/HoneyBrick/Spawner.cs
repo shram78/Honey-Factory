@@ -38,6 +38,8 @@ public class Spawner : MonoBehaviour
             brickPlace.Reserve(brick);
 
             _honeyBrickContainer.AddBrick();
+
+            Debug.Log(brickPlace.IsAvailible);
         }
     }
 
